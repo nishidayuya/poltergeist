@@ -103,6 +103,13 @@ class Poltergeist.Browser
     @page.execute("function() { #{script} }")
     this.sendResponse(true)
 
+  evaluate_in_browser: (script) ->
+    this.sendResponse eval(script)
+
+  execute_in_browser: (script) ->
+    eval(script)
+    this.sendResponse(true)
+
   push_frame: (id) ->
     @page.pushFrame(id)
     this.sendResponse(true)

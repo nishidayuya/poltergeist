@@ -81,6 +81,14 @@ module Capybara::Poltergeist
       command 'execute', script
     end
 
+    def evaluate_in_browser(script)
+      command 'evaluate_in_browser', script
+    end
+
+    def execute_in_browser(script)
+      command 'execute_in_browser', script
+    end
+
     def within_frame(id, &block)
       command 'push_frame', id
       yield
