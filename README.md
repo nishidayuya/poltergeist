@@ -15,7 +15,7 @@ JS
 
 # Poltergeist - A PhantomJS driver for Capybara #
 
-Version: 0.7.0
+Version: 0.7.0.nishidayuya.1
 
 [![Build Status](https://secure.travis-ci.org/jonleighton/poltergeist.png)](http://travis-ci.org/jonleighton/poltergeist)
 [![Dependency Status](https://gemnasium.com/jonleighton/poltergeist.png)](https://gemnasium.com/jonleighton/poltergeist)
@@ -195,6 +195,13 @@ makes debugging easier). Running `rake autocompile` will watch the
 `lib/capybara/client/compiled`.
 
 ## Changes ##
+
+### 0.7.0.nishidayuya.1 ###
+
+*   Added onUnsupportedContentReceived callback for forked PhantomJS.
+    https://github.com/woodwardjd/phantomjs/tree/add_download_capabilities
+*   Added Capybara::Poltergeist::Browser#evaluate_in_browser and
+    Capybara::Poltergeist::Browser#execute_in_browser.
 
 ### 0.7.0 ###
 
