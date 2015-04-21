@@ -1,3 +1,18 @@
+**This is forked version to download unsupported content.**
+
+```ruby
+require 'capybara/poltergeist'
+session = Capybara::Session.new(:poltergeist)
+session.driver.browser.execute_in_browser(<<JS)
+Poltergeist.WebPage.prototype.onUnsupportedContentReceived = function(response) {
+  // `response` argument is following format:
+  // https://github.com/woodwardjd/phantomjs/commit/823dc396327e4cc87025b41661634eeada72e9ac#diff-e6d43d0460770360ad54e3b50f04734cR337
+  this['native'].saveUnsupportedContent('/path-to/download_path/a.pdf',
+                                        response.id);
+}
+JS
+```
+
 # Poltergeist - A PhantomJS driver for Capybara #
 
 Version: 0.7.0
