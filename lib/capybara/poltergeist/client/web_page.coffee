@@ -24,7 +24,6 @@ class Poltergeist.WebPage
     @urlBlacklist    = []
     @frames          = []
     @errors          = []
-    @_networkTraffic = {}
     @_tempHeaders    = {}
     @_blockedUrls    = []
     @_requestedResources = {}
@@ -107,18 +106,10 @@ class Poltergeist.WebPage
         @redirectURL = null
         @requestId   = request.id
 
-      @_networkTraffic[request.id] = {
-        request:       request,
-        responseParts: []
-        error: null
-      }
-
       @_requestedResources[request.id] = request.url
     return true
 
   onResourceReceivedNative: (response) ->
-    @_networkTraffic[response.id]?.responseParts.push(response)
-
     if response.stage == 'end'
       delete @_requestedResources[response.id]
 
@@ -131,7 +122,6 @@ class Poltergeist.WebPage
     return true
 
   onResourceErrorNative: (errorResponse) ->
-    @_networkTraffic[errorResponse.id]?.error = errorResponse
     delete @_requestedResources[errorResponse.id]
     return true
 
@@ -194,10 +184,9 @@ class Poltergeist.WebPage
     return true
 
   networkTraffic: ->
-    @_networkTraffic
+    return {}
 
   clearNetworkTraffic: ->
-    @_networkTraffic = {}
     return true
 
   blockedUrls: ->
